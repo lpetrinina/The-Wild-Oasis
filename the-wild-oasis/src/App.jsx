@@ -18,14 +18,14 @@ function App() {
 
       <StyledApp>
         <Row>
-          <Row type='horizontal'>
+          <Row $type='horizontal'>
             <Heading as='h1'> The Wild Oasis</Heading>
             <div>
               <Heading as='h2'> Check in and out</Heading>
               <Button onClick={() => alert("Check in!")}>Check in</Button>
               <Button
-                variation='secondary'
-                size='small'
+                $variation='secondary'
+                $size='small'
                 onClick={() => alert("Check out!")}
               >
                 Check out
