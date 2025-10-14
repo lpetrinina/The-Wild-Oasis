@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { formatCurrency } from "../../utils/helpers";
+import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { formatCurrency } from "../../utils/helpers";
 import { deleteCabin } from "../../services/apiCabins";
 
 const TableRow = styled.div`
@@ -59,11 +61,13 @@ function CabinRow({ cabin }) {
 
     // if mutation is succesful we'll invalidate query with key 'cabins' which gonna refetch the query and update UI
     onSuccess: () => {
+      toast.success("Cabin is successfuly deleted!");
+
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });
     },
-    onError: (err) => alert(err.message),
+    onError: (err) => toast.error(err.message),
   });
 
   return (
