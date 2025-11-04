@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
-import {
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { cloneElement, createContext, useContext, useState } from "react";
+
+import useOutsideClick from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -87,19 +82,7 @@ function Window({ children, name }) {
   const modalContainer = document.getElementById("modal-root");
 
   const { openName, close } = useContext(ModalContext);
-  const ref = useRef();
-
-  useEffect(() => {
-    const handleClick = function (e) {
-      if (ref.current && !ref.current.contains(e.target)) {
-        close();
-      }
-    };
-
-    document.addEventListener("click", handleClick, true); // Add  event listener
-
-    return () => document.removeEventListener("click", handleClick, true); //Clean up function
-  }, [close]);
+  const ref = useOutsideClick(close);
 
   if (name !== openName) {
     return null;
