@@ -74,7 +74,7 @@ function CabinRow({ cabin }) {
   }
 
   return (
-    <Table.Row role='row'>
+    <Table.Row>
       <Img src={image} />
       <Cabin>{name}</Cabin>
       <div>Fits up to {maxCapacity} guests</div>
