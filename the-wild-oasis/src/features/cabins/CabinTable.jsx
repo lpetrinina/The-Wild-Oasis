@@ -11,6 +11,7 @@ function CabinTable() {
   const { isPending, cabins } = useCabins();
   const [searchParams] = useSearchParams();
 
+  // ** Filter
   const filterValue = searchParams.get("discount") || "all"; // set default filter value to 'all'
 
   let filteredCabins;
@@ -20,11 +21,26 @@ function CabinTable() {
   }
 
   if (filterValue === "no-discount") {
-    filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
+    filteredCabins = cabins?.filter((cabin) => cabin.discount === 0);
   }
 
   if (filterValue === "with-discount") {
-    filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
+    filteredCabins = cabins?.filter((cabin) => cabin.discount > 0);
+  }
+
+  // ** Sort
+  const sortBy = searchParams.get("sortBy") || "name-asc";
+
+  const [field, direction] = sortBy.split("-");
+
+  let sortedCabins;
+
+  if (direction === "asc") {
+    sortedCabins = filteredCabins?.sort((a, b) => a[field] - b[field]);
+  }
+
+  if (direction === "desc") {
+    sortedCabins = filteredCabins?.sort((a, b) => b[field] - a[field]);
   }
 
   if (isPending) {
@@ -44,7 +60,7 @@ function CabinTable() {
         </Table.Header>
 
         <Table.Body
-          data={filteredCabins}
+          data={sortedCabins}
           render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
         />
       </Table>
