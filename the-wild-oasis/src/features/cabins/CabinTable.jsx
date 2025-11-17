@@ -6,10 +6,18 @@ import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Empty from "../../ui/Empty";
 
 function CabinTable() {
   const { isPending, cabins } = useCabins();
   const [searchParams] = useSearchParams();
+
+  if (isPending) {
+    return <Spinner />;
+  }
+  if (!cabins.length) {
+    return <Empty resourceName='cabins' />;
+  }
 
   // ** Filter
   const filterValue = searchParams.get("discount") || "all"; // set default filter value to 'all'
@@ -41,10 +49,6 @@ function CabinTable() {
 
   if (direction === "desc") {
     sortedCabins = filteredCabins?.sort((a, b) => b[field] - a[field]);
-  }
-
-  if (isPending) {
-    return <Spinner />;
   }
 
   return (
