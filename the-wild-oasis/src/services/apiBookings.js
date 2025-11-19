@@ -12,7 +12,7 @@ export async function getBookings({ filter, sortBy }) {
 
     // * Filter
     if (filter !== null) {
-        query.eq(filter.field, filter.value)
+        query[filter.method || 'eq'](filter.field, filter.value);
     }
 
     const { data, error } = await query;
