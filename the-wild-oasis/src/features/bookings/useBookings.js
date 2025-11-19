@@ -15,17 +15,21 @@ export function useBookings() {
     // ** Sort
     const sortByRaw = searchParams.get('sortBy') || 'startDate-desc';
     const [field, direction] = sortByRaw.split('-');
+    const sortBy = { field, direction };
 
-    const sortBy = { field, direction }
+    // *** Pagination
+    const page = !searchParams.get('page') ? 1 : Number(searchParams.get('page'));
+
 
     const {
         isPending,
-        data: bookings,
+        data: { data: bookings, count } = {},
         error,
     } = useQuery({
-        queryKey: ["bookings", filter, sortBy], //A unique key that helps ReactQuery know if it needs to fetch data (the key doesn't exist in cache) or not.
-        queryFn: () => getBookings({ filter, sortBy })
+        queryKey: ["bookings", filter, sortBy, page], //A unique key that helps ReactQuery know if it needs to fetch data (the key doesn't exist in cache) or not.
+        queryFn: () => getBookings({ filter, sortBy, page })
     });
 
-    return { isPending, bookings };
+
+    return { isPending, bookings, count };
 }
