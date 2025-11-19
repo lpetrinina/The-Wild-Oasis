@@ -9,8 +9,6 @@ import Spinner from "../../ui/Spinner";
 function BookingTable() {
   const { isPending, bookings } = useBookings();
 
-  console.log(bookings);
-
   if (isPending) {
     return <Spinner />;
   }
