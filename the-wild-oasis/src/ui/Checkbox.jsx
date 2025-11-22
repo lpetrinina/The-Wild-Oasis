@@ -29,7 +29,7 @@ function Checkbox({ checked, onChange, disabled = false, id, children }) {
   return (
     <StyledCheckbox>
       <input
-        type="checkbox"
+        type='checkbox'
         id={id}
         checked={checked}
         onChange={onChange}
