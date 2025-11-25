@@ -41,6 +41,11 @@ function Filter({ filterField, options }) {
 
   const handleClick = function (value) {
     searchParams.set(filterField, value);
+
+    if (searchParams.get("page")) {
+      searchParams.set("page", 1);
+    }
+
     setSearchParams(searchParams); // update the URL as add '?discount=all' for example
   };
 
