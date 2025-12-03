@@ -22,15 +22,28 @@ function UpdateUserDataForm() {
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 
-  function handleSubmit(e) {
+  const handleSubmit = function (e) {
     e.preventDefault();
 
     if (!fullName) {
       return;
     }
 
-    updateUser({ fullName, avatar });
-  }
+    updateUser(
+      { fullName, avatar },
+      {
+        onSuccess: () => {
+          setAvatar(null);
+          e.target.reset();
+        },
+      }
+    );
+  };
+
+  const handleCancel = function () {
+    setFullName(currentFullName);
+    setAvatar(null);
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -58,7 +71,12 @@ function UpdateUserDataForm() {
       </FormRow>
 
       <FormRow>
-        <Button type='reset' $variation='secondary' disabled={isUpdating}>
+        <Button
+          type='reset'
+          $variation='secondary'
+          disabled={isUpdating}
+          onClick={handleCancel}
+        >
           Cancel
         </Button>
 
