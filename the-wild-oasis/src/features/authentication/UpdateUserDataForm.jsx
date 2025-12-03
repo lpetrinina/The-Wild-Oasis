@@ -25,7 +25,7 @@ function UpdateUserDataForm() {
   const handleSubmit = function (e) {
     e.preventDefault();
 
-    if (!fullName) {
+    if (!fullName || fullName === currentFullName) {
       return;
     }
 
