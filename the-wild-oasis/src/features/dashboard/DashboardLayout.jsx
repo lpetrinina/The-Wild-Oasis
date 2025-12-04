@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+import { useRecentBookings } from "./useResentBookings";
+import Spinner from "../../ui/Spinner";
+import { useRecentStays } from "./useRecentStays";
+
 const StyledDashboardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -8,6 +12,13 @@ const StyledDashboardLayout = styled.div`
 `;
 
 function DashboardLayout() {
+  const { isPendingBookings, bookings } = useRecentBookings();
+  const { isPendingStays, stays, confirmed } = useRecentStays();
+
+  if (isPendingBookings || isPendingStays) {
+    return <Spinner />;
+  }
+
   return (
     <StyledDashboardLayout>
       <div>Statistics</div>
