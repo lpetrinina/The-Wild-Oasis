@@ -58,7 +58,7 @@ This is the internal application intended only for hotel employees.
 - <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react_query.png" width="20" align="center" /> **React Query** - for remote state management (caching, automatic re-fetching, pre-fetching, data mutations)
 - <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/supabase.png" width="20" align="center" /> **Supabase** - to create a back-end with a Postgres database
 - 🔗 **REST API** - for communication with the back-end (Supabase)
-- 
+- Others - React icons, React hot toast, Recharts, date-fns
 
 ### Core React Concepts
 
