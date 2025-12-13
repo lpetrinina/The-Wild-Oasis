@@ -5,6 +5,9 @@ This is the internal application intended only for hotel employees.
 
 🔍 See live demo [here](https://the-wild-oasis-luiza.netlify.app)
 
+<img width="1904" height="1025" alt="image" src="https://github.com/user-attachments/assets/fb63ec80-acf3-4e8f-b673-45fd5393d7fb" />
+
+
 ## Installation 
 
 ⚠️ Clone down this repository. You will need  `npm` installed globally on your machine.  
